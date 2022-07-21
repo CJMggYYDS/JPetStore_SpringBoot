@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Account</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+</head>
+<body>
+<div th:replace="common/includeTop"></div>
+<div id="Content">
+
+    <div id="Catalog">
+        <form action="/account/newAccount" method="post">
+            <h3>User Information</h3>
+
+            <table>
+                <tr>
+                    <td>User ID:</td>
+                    <td><input type="text" name="username" id="username" /></td>
+                    <td style="background: white"><div id="isExistInfo"></div></td>
+                <tr>
+                    <td>New password:</td>
+                    <td><input type="password" name="password" id="password"/></td>
+                    <td style="background: white"><div id="isPwd"></div></td>
+                </tr>
+                <tr>
+                    <td>Repeat password:</td>
+                    <td><input type="password" name="repeatPassword" id="repeatPassword"/></td>
+                    <td style="background: white"><div id="isRePwd"></div></td>
+                </tr>
+                <tr>
+                    <td>VerificationCode:</td>
+                    <td><input type="text" name="verificationCode" /></td>
+                    <td><img id="img" src="/account/verify"  alt=""></td>
+                </tr>
+                <tr> <font color='red' th:text="${session.message2}"></font></tr>
+                <tr><font color='red' th:text="${session.message1}"></font></tr>
+            </table>
+
+            <h3>Account Information</h3>
+            <table th:replace="account/IncludeAccountFields::accountTable"></table>
+            <h3 th:replace="account/IncludeAccountFields::h3"></h3>
+            <table th:replace="account/IncludeAccountFields::profileTable"></table>
+
+            <input type="submit" name="newAccount" value="register" />
+        </form>
+    </div>
+
+</div>
+<div th:replace="common/includeBottom"></div>
+</body>
+</html>

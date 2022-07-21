@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cart</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+</head>
+<body>
+<div th:replace="common/includeTop"></div>
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+
+<div id="Cart">
+    <h2>Shopping Cart</h2>
+        <table>
+            <tr>
+                <th><b>Item ID</b></th>
+                <th><b>Product ID</b></th>
+                <th><b>Description</b></th>
+                <th><b>In Stock?</b></th>
+                <th><b>Quantity</b></th>
+                <th><b>List Price</b></th>
+                <th><b>Total Cost</b></th>
+                <th>&nbsp;</th>
+            </tr>
+
+                <tr th:if="${session.cart.getNumberOfItems()==0}">
+                    <td colspan="8"><b>Your cart is empty.</b></td>
+                </tr>
+
+                <tr th:if="${session.cart.getNumberOfItems()!=0}" th:each="cartItem:${session.cart.getCartItemList()}">
+                    <td th:if="${session.cart.getNumberOfItems()!=0}">
+                        <a th:if="${session.cart.getNumberOfItems()!=0}" th:href="@{/catalog/Item(itemId=${cartItem.item.itemId})}" th:text="${cartItem.item.itemId}">${cartItem.item.itemId}</a>
+                    </td>
+                    <td th:if="${session.cart.getNumberOfItems()!=0}" th:text="${cartItem.item.productId}">
+                        ${cartItem.item.product.productId}
+                    </td>
+                    <td th:if="${session.cart.getNumberOfItems()!=0}" th:text="${cartItem.item.attribute1} +${cartItem.item.attribute2}+
+                        ${cartItem.item.attribute2} +${cartItem.item.attribute4}+
+                        ${cartItem.item.attribute5}+ ${cartItem.item.product.name}">
+                    </td>
+                    <td th:if="${session.cart.getNumberOfItems()!=0}" th:text="${cartItem.inStock}">
+                        ${cartItem.inStock}
+                    </td>
+
+                    <td  th:if="${session.cart.getNumberOfItems()!=0}" valign="top">
+                        <div>
+                            <span>
+                                <button id="sub" value="-" style="display:inline;background-repeat:no-repeat;width: 30px; height: 30px; border-radius:50%;border: none" >-</button>
+                            </span>
+                            <span>
+                                <input th:if="${session.cart.getNumberOfItems()!=0}" type="text" style="display:inline;top:5px;width: 80px;height: 30px" id="quantity" th:name="${cartItem.item.itemId}" th:value="${cartItem.quantity}">
+                            </span>
+                            <span>
+                               <button id="add" value="+" style="display:inline;background-repeat:no-repeat;width: 30px; height: 30px; border-radius:50%;border: none" >+</button>
+                            </span>
+                        </div>
+                    </td>
+
+                    <td th:if="${session.cart.getNumberOfItems()!=0}" th:text="'$'+${#numbers.formatDecimal(cartItem.item.listPrice, 1, 2)}">
+                    </td>
+                    <td th:if="${session.cart.getNumberOfItems()!=0}">
+                        <label th:if="${session.cart.getNumberOfItems()!=0}" id="total" th:text="'$'+${#numbers.formatDecimal(cartItem.total, 1, 2)}">
+<!--                            <fmt:formatNumber value="${cartItem.total}" pattern="$#,##0.00" />-->
+                        </label>
+                    </td>
+                    <td th:if="${session.cart.getNumberOfItems()!=0}">
+                        <a class="Button" th:if="${session.cart.getNumberOfItems()!=0}" th:href="@{/cart/removeItemFromCart(workingItemId=${cartItem.item.itemId})}">Remove</a>
+                    </td>
+                </tr>
+            <tr>
+                <td colspan="7">
+                    Sub Total: <label id="subtotal" th:text="'$'+${session.cart.subTotal}"></label>
+                </td>
+                <td> </td>
+            </tr>
+        </table>
+        <a class="Button" th:if="${session.cart.numberOfItems gt 0}" href="/order/newOrderForm">
+            Proceed to CheckOut
+        </a>
+</div>
+
+<div id="Separator">&nbsp;</div>
+
+<div th:replace="common/includeBottom"></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+#auto{
+    width: 160px;
+    border: 1px solid #dedede;
+    border-top: none;
+    position: absolute;
+    left:1095px;
+    top:30px;
+    margin: 20px auto 0 auto;
+}
+#auto_out{
+    width: 160px;
+    height: 30px;
+    line-height: 36px;
+    padding-left: .5em;
+    color: #000;
+    background: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

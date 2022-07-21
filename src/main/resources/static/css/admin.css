@@ -1,0 +1,114 @@
+
+/*侧边导航栏*/
+.leftBar {
+    width: 100px;
+    height: 280px;
+    float: left;
+    margin-top: 60px;
+    margin-left: -7px;
+    /*border: 1px solid #ff6f8a;*/
+}
+
+.leftBar>li{
+    list-style: none;
+    text-align: center;
+    position:relative;
+
+}
+
+.leftBar>li>a {
+    margin-top:1px;
+    background-color: #484848;
+    float: left;
+    width: 100%;
+    padding: 18px 0 18px 0;
+    font: 16px "微软雅黑", Arial, Helvetica, sans-serif;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border:1px solid transparent;
+}
+
+.leftBar>li>a:hover{
+    background-color: #727272;
+}
+
+
+/*顶部导航栏*/
+.topBar {
+    /* 设置宽度高度背景颜色 */
+    height: auto;
+    /*高度改为自动高度*/
+    width: 100%;
+    margin-left: -8px;
+    background: #484848;
+    position: fixed;
+    /*固定在顶部*/
+    top: 0;
+    /*离顶部的距离为0*/
+    margin-bottom: 5px;
+}
+
+.topBar ul {
+    /* 清除ul标签的默认样式 */
+    width: auto;
+    /*宽度也改为自动*/
+    list-style-type: none;
+    white-space: nowrap;
+    overflow: hidden;
+    /*第一个内容与左边的距离*/
+    margin-left: 20%;
+    /* margin-top: 0;          */
+    padding: 2px;
+
+}
+
+.topBar li {
+    float: left;
+    /* 使li内容横向浮动，即横向排列  */
+    margin-right: 10%;
+    /* 两个li之间的距离*/
+    position: relative;
+    overflow: hidden;
+}
+
+.topBar li a {
+    /* 设置链接内容显示的格式*/
+    display: block;
+    /* 把链接显示为块元素可使整个链接区域可点击 */
+    color: white;
+    text-align: center;
+    padding: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    /* 去除下划线 */
+
+}
+
+.topBar li a:hover {
+    /* 鼠标选中时背景变为灰色,字体变成黑色 */
+    background-color: #727272;
+    color: black;
+}
+
+.topBar ul li ul {
+    /* 设置二级菜单 */
+    margin-left: -0.2px;
+    background: #727272;
+    position: relative;
+    display: none;
+    /* 默认隐藏二级菜单的内容 */
+
+}
+
+.topBar ul li ul li {
+    /* 二级菜单li内容的显示 */
+    float: none;
+    text-align: center;
+}
+
+.topBar ul li:hover ul {
+    /* 鼠标选中二级菜单内容时 */
+    display: block;
+}
+

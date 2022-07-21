@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JPetStore</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+    <link rel="StyleSheet" href="/css/searchProduct.css" type="text/css" media="screen" />
+    <link rel="StyleSheet" href="/css/mouseEvent.css" type="text/css" media="screen" />
+    <link rel="StyleSheet" href="/css/order.css" type="text/css" media="screen" />
+    <link rel="StyleSheet" href="/css/checkAccount.css" type="text/css" media="screen">
+
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/checkAccount.js"></script>
+    <script type="text/javascript" src="/js/showCategory.js"></script>
+    <script type="text/javascript" src="/js/order.js"></script>
+    <script type="text/javascript" src="/js/updateCart.js"></script>
+</head>
+<body>
+    <header th:fragment="header">
+        <div id="Header">
+
+            <div id="Logo">
+                <div id="LogoContent">
+                    <a href="/catalog/main"><img src="/images/logo-topbar.gif" /></a>
+                </div>
+            </div>
+
+            <div id="Menu">
+                <div id="MenuContent">
+                    <a href="/cart/viewCart"><img align="middle" name="img_cart"
+                                            src="/images/cart.gif" /></a> <img align="middle"
+                                                                              src="/images/separator.gif" />
+                    <a href="/account/login" th:if="${session.account==null}">
+                        Sign In
+                    </a>
+                    <a href="/account/SignOut" th:if="${session.account!=null}">
+                        Sign Out
+                    </a>
+                    <img align="middle" src="/images/separator.gif" th:if="${session.account!=null}" />
+                    <a href="/account//viewEdit" th:if="${session.account!=null}">
+                        My Account
+                    </a>
+                    <img align="middle" src="/images/separator.gif" />
+                    <a href="../help.html">?</a>
+                </div>
+            </div>
+
+            <!--自动补全的改动——CJM-->
+            <div id="Search">
+                <div id="SearchContent">
+                    <form action="/catalog/search" method="post">
+                        <input type="text" name="keyword" id="searchInput" size="20" />
+                        <input type="submit" name="searchProducts" value="Search" />
+                        <div id="auto">
+                        </div>
+                        <script type="text/javascript" src="/js/searchProduct.js"></script>
+                    </form>
+                </div>
+
+            </div>
+            <!--CJM-->
+
+            <div id="QuickLinks">
+                <a href="/catalog/Category?categoryId=FISH"><img
+                        src="/images/sm_fish.gif" /></a> <img src="/images/separator.gif" />
+                <a href="/catalog/Category?categoryId=DOGS"><img
+                        src="/images/sm_dogs.gif" /></a> <img src="/images/separator.gif" />
+                <a href="/catalog/Category?categoryId=REPTILES"><img
+                        src="/images/sm_reptiles.gif" /></a> <img
+                    src="/images/separator.gif" />
+                <a href="/catalog/Category?categoryId=CATS"><img
+                        src="/images/sm_cats.gif" /></a> <img src="/images/separator.gif" />
+                <a href="/catalog/Category?categoryId=BIRDS"><img
+                        src="/images/sm_birds.gif" /></a>
+            </div>
+
+        </div>
+    </header>
+
+</body>
+</html>

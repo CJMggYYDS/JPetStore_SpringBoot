@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${item.itemId}">Item</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+</head>
+<body>
+<div th:replace="common/includeTop"></div>
+
+<div id="Content">
+    <div id="BackLink">
+        <a th:href="@{/catalog/Product(productId=${item.product.productId})}">Return to Product</a>
+    </div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <td th:text="${item.product.description}"></td>
+            </tr>
+            <tr>
+                <td><b th:text="${item.itemId}"> </b></td>
+            </tr>
+            <tr>
+                <td>
+                    <b>
+                        <font size="4" th:text="${item.attribute1==null?'':item.attribute1}+' '+${item.attribute2==null?'':item.attribute2}
+                                +' '+${item.attribute3==null?'':item.attribute3}+' '+${item.attribute4==null?'':item.attribute4}
+                                +' '+${item.attribute5==null?'':item.attribute5}+' '+${item.product.name==null?'':item.product.name}">
+                            ${sessionScope.item.attribute1}${sessionScope.item.attribute2}
+                            ${sessionScope.item.attribute3}${sessionScope.item.attribute4}
+                            ${sessionScope.item.attribute5}${sessionScope.product.name}
+                        </font>
+                    </b>
+                </td>
+            </tr>
+            <tr>
+                <td th:text="${session.product.name}">${sessionScope.product.name}</td>
+            </tr>
+            <tr>
+                <td th:if="${item.quantity le 0}">
+                    Back ordered.
+                </td>
+                <td th:if="${item.quantity gt 0}" th:text="${item.quantity}+' in stock.'">
+
+                </td>
+            </tr>
+            <tr>
+                <td th:text="'$'+${#numbers.formatDecimal(item.listPrice, 1, 2)}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <a class="Button" th:href="@{/cart/addItemToCart(workingItemId=${item.itemId})}">Add to Cart</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div th:replace="common/includeBottom"></div>
+</body>
+</html>

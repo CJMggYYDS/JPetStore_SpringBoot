@@ -1,0 +1,46 @@
+#order-tab{
+    width: 1000px;
+    height: 400px;
+    position: relative;
+    left: 200px;
+    background: #cccccc;
+    align-self: center;
+}
+
+#tab-title{
+    width: 900px;
+    height: 50px;
+    background: #cccccc;
+    text-align: center;
+    line-height: 50px;
+}
+
+.action{
+    color: #eaac00;
+    border-bottom: 1px solid #eaac00;
+}
+
+
+#tab-title li{
+    width: 33.3%;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#tab-content{
+    width:800px;
+}
+
+#tab-content li{
+    display: none;
+    width: 100%;
+    border: 1px ;
+}
+
+#tab-content .action{
+    display: block;
+}
+
+

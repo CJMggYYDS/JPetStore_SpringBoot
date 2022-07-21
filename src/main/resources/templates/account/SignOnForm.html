@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign On</title>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+</head>
+<body>
+<div th:replace="common/includeTop"></div>
+
+<div id="Content">
+    <div id="Catalog">
+        <form th:action="@{/account/SignOn}"method="post">
+            <p>Please enter your username and password.</p>
+            <script>
+                window.onload=function(){
+                    document.getElementById("img").onclick=function(){
+                        this.src = "/account/verify?time=" + new Date().getTime();
+                    }
+                }
+            </script>
+            <p>
+                Username:<input type="text" name="username" /><br /><br />
+                Password:<input type="password" name="password" /><br /> <font color='red' th:text="${session.message}"></font><br />
+                CheckCode:<input type="text" name="checkcode" /><br/> <font color='red' th:text="${session.errorcode}"></font><br/>
+                <img id="img" src="/account/verify"  alt="">
+
+                <!--  Validation Code:<input type="text" name="validationCode"/>
+        <img src="validation" id="imgservlet" onclick="reloadImage()"/>
+        -->
+                <!--  <input type="button" value="changeImage" onclick="reloadImage()" id="btn">-->
+            </p>
+            <input type="submit" name="signon" value="Login" />
+        </form>
+
+        Need a username and password? <a href="/account/viewRegister">Register
+        Now!</a>
+
+    </div>
+
+</div>
+
+
+<div th:replace="common/includeBottom"></div>
+</body>
+</html>
